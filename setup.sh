@@ -142,7 +142,7 @@ if [ "$XFORMERS" = true ] ; then
             esac
         elif [ "$CUDA_VERSION" = "12.4" ] ; then
             case $PYTORCH_VERSION in
-                2.5.0) pip install xformers==0.0.28.post2 --index-url https://download.pytorch.org/whl/cu124 ;;
+                2.5.1) pip install xformers==0.0.28.post3 --index-url https://download.pytorch.org/whl/cu124 ;;
                 *) echo "[XFORMERS] Unsupported PyTorch & CUDA version: $PYTORCH_VERSION & $CUDA_VERSION" ;;
             esac
         else
