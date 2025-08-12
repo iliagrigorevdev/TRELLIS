@@ -155,6 +155,11 @@ if [ "$XFORMERS" = true ] ; then
                 2.5.0) pip install xformers==0.0.28.post2 --index-url https://download.pytorch.org/whl/cu124 ;;
                 *) echo "[XFORMERS] Unsupported PyTorch & CUDA version: $PYTORCH_VERSION & $CUDA_VERSION" ;;
             esac
+        elif [ "$CUDA_VERSION" = "12.8" ] ; then
+            case $PYTORCH_VERSION in
+                2.7.1) pip install xformers==0.0.31.post1 --index-url https://download.pytorch.org/whl/cu128 ;;
+                *) echo "[XFORMERS] Unsupported PyTorch & CUDA version: $PYTORCH_VERSION & $CUDA_VERSION" ;;
+            esac
         else
             echo "[XFORMERS] Unsupported CUDA version: $CUDA_MAJOR_VERSION"
         fi
@@ -195,6 +200,7 @@ if [ "$KAOLIN" = true ] ; then
             2.2.1) pip install kaolin -f https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.2.1_cu118.html;;
             2.2.2) pip install kaolin -f https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.2.2_cu118.html;;
             2.4.0) pip install kaolin -f https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.4.0_cu121.html;;
+            2.7.1) pip install kaolin -f https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.7.1_cu128.html;;
             *) echo "[KAOLIN] Unsupported PyTorch version: $PYTORCH_VERSION" ;;
         esac
     else
@@ -247,7 +253,7 @@ if [ "$SPCONV" = true ] ; then
     if [ "$PLATFORM" = "cuda" ] ; then
         case $CUDA_MAJOR_VERSION in
             11) pip install spconv-cu118 ;;
-            12) pip install spconv-cu120 ;;
+            12) pip install spconv-cu126 ;;
             *) echo "[SPCONV] Unsupported PyTorch CUDA version: $CUDA_MAJOR_VERSION" ;;
         esac
     else
